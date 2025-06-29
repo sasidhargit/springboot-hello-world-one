@@ -21,6 +21,12 @@ jobs:
       - name: Build with Maven
         run: mvn clean package -DskipTests
 
+     - name: Debug GITHUB_TOKEN Availability
+        run: |
+          echo "Token length: ${#CR_PAT1}"
+        env:
+          GITHUB_TOKEN: ${{ secrets.CR_PAT1 }}
+
       - name: Log in to GitHub Container Registry
         uses: docker/login-action@v3
         with:
